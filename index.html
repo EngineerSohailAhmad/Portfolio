@@ -29,39 +29,30 @@
 ========================= -->
 
 <header>
-
     <nav class="navbar">
-
         <div class="logo">
-
             <h2>Sohail Ahmad</h2>
-
         </div>
 
-        <ul class="nav-links">
-
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
-
             <li><a href="#about">About</a></li>
-
             <li><a href="#education">Education</a></li>
-
             <li><a href="#certifications">Certifications</a></li>
-
             <li><a href="#skills">Skills</a></li>
-
             <li><a href="#projects">Projects</a></li>
-
             <li><a href="#experience">Experience</a></li>
-
             <li><a href="#contact">Contact</a></li>
-
         </ul>
 
-        <button id="darkMode">🌙</button>
-
+        <div class="nav-controls">
+            <button id="darkMode">🌙</button>
+            <!-- 3 Lines Hamburger Menu Icon -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                &#9776;
+            </button>
+        </div>
     </nav>
-
 </header>
 
 <!-- =========================
@@ -999,6 +990,36 @@
 </button>
 
 <script src="script.js"></script>
+<!-- Aapka Baqi HTML Code -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navLinks.classList.toggle('active');
+                });
+
+                // Window par click karne se menu close ho jaye
+                document.addEventListener('click', (e) => {
+                    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+
+                // Link click hone par menu close ho jaye
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+
 
 </body>
 
